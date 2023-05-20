@@ -21,9 +21,9 @@ public class BookController {
         return bookRepository.findAll();
     }
 
-    @PostMapping("/add")
-    public Book addBook(@RequestBody Book book){
-        return bookRepository.save(book);
-    }
+//    @PostMapping("/add")
+//    public Book addBook(@RequestBody Book book){
+//        return bookRepository.save(book);
+//    }
 
 }

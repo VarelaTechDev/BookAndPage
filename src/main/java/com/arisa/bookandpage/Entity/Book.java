@@ -1,27 +1,24 @@
 package com.arisa.bookandpage.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String title;
-    String author;
+    private String title;
+    private String author;
+    private int published_year;
 
-    public Book() {
-    }
-
-    public Book(Long id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-    }
+    @ManyToOne
+    @JoinColumn(name="personId")
+    @JsonBackReference
+    private Person person;
 
     public Long getId() {
         return id;
@@ -45,5 +42,21 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getPublished_year() {
+        return published_year;
+    }
+
+    public void setPublished_year(int published_year) {
+        this.published_year = published_year;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }
